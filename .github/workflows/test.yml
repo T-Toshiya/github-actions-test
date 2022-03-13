@@ -22,7 +22,7 @@ jobs:
           fields: repo,commit,ref,workflow,message
           author_name: ${{ github.actor }}
           mention: ${{ github.event.client_payload.mention }}
-          if_mention: always()
+          if_mention: success
           text: |
             Start manually deploy to test.
         env:
@@ -61,7 +61,7 @@ jobs:
           fields: repo,commit,ref,workflow,message
           author_name: ${{ github.actor }}
           mention: ${{ github.event.client_payload.mention }}
-          if_mention: always()
+          if_mention: success
           text: |
             Deployment has ${{
               (env.WORKFLOW_CONCLUSION == 'success' && 'succeeded') ||
