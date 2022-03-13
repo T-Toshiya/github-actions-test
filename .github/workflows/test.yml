@@ -56,7 +56,7 @@ jobs:
       - name: Notify slack of deployment result
         uses: 8398a7/action-slack@v3
         with:
-          status: ${{ env.WORKFLOW_CONCLUSION }}
+          status: ${{ job.status }}
           fields: repo,commit,ref,workflow,message
           author_name: ${{ github.actor }}
           mention: ${{ github.event.client_payload.mention }}
