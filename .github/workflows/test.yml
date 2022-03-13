@@ -53,7 +53,6 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
     steps:
-      - uses: technote-space/workflow-conclusion-action@v2
       - name: Notify slack of deployment result
         uses: 8398a7/action-slack@v3
         with:
