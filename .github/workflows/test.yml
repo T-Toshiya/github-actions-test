@@ -21,7 +21,7 @@ jobs:
           status: ${{ job.status }}
           fields: repo,commit,ref,workflow,message
           author_name: ${{ github.actor }}
-          mention: ${{ github.event.client_payload.mention }}
+          mention: U034Z2H9N2C
           text: |
             Start manually deploy to test.
         env:
@@ -59,6 +59,7 @@ jobs:
           status: ${{ env.WORKFLOW_CONCLUSION }}
           fields: repo,commit,ref,workflow,message
           author_name: ${{ github.actor }}
+          mention: "U034Z2H9N2C"
           text: |
             Deployment has ${{
               (env.WORKFLOW_CONCLUSION == 'success' && 'succeeded') ||
