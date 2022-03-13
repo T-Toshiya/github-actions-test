@@ -12,6 +12,21 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  notify_start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify slack of start manually deployment
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,commit,ref,workflow,message
+          author_name: ${{ github.actor }}
+          mention: ${{ github.event.client_payload.mention }}
+          text: |
+            Start manually deploy to test.
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -33,3 +48,22 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+  notify_end:
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - uses: technote-space/workflow-conclusion-action@v2
+      - name: Notify slack of deployment result
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ env.WORKFLOW_CONCLUSION }}
+          fields: repo,commit,ref,workflow,message
+          author_name: ${{ github.actor }}
+          text: |
+            Deployment has ${{
+              (env.WORKFLOW_CONCLUSION == 'success' && 'succeeded') ||
+              (env.WORKFLOW_CONCLUSION == 'failure' && 'failed') ||
+              'cancelled'
+            }} to test.
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
