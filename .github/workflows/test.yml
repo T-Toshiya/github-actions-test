@@ -63,10 +63,6 @@ jobs:
           mention: ${{ github.event.client_payload.mention }}
           if_mention: success
           text: |
-            Deployment has ${{
-              (job.status == 'success' && 'succeeded') ||
-              (job.status == 'failure' && 'failed') ||
-              'cancelled'
-            }} to test.
+            Deployment has ${{ job.status }} to test.
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
