@@ -62,8 +62,8 @@ jobs:
           if_mention: success
           text: |
             Deployment has ${{
-              (env.WORKFLOW_CONCLUSION == 'success' && 'succeeded') ||
-              (env.WORKFLOW_CONCLUSION == 'failure' && 'failed') ||
+              (job.status == 'success' && 'succeeded') ||
+              (job.status == 'failure' && 'failed') ||
               'cancelled'
             }} to test.
         env:
