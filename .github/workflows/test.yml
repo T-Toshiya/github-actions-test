@@ -52,7 +52,7 @@ jobs:
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
-          issue-number: 10
+          issue-number: 11
           body: |
             This is a multi-line test comment
             - With GitHub **Markdown** :sparkles:
