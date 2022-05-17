@@ -3,8 +3,8 @@ name: test
 
 # Controls when the workflow will run
 on:
-  repository_dispatch:
-    types: [hoge]
+#  repository_dispatch:
+#    types: [hoge]
 
 # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
