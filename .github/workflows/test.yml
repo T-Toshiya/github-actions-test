@@ -9,60 +9,81 @@ on:
 # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  push:
+    branches:
+      - main
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  notify_start:
+  dump:
     runs-on: ubuntu-latest
     steps:
-      - name: Notify slack of start manually deployment
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,commit,ref,workflow,message
-          author_name: ${{ github.actor }}
-          mention: ${{ github.event.client_payload.mention }}
-          if_mention: success
-          text: |
-            Start manually deploy to test.
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
+      - name: dump context
+        run: echo '${{ toJSON(github) }}'
+#  notify_start:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Notify slack of start manually deployment
+#        uses: 8398a7/action-slack@v3
+#        with:
+#          status: ${{ job.status }}
+#          fields: repo,commit,ref,workflow,message
+#          author_name: ${{ github.actor }}
+##          mention: ${{ github.event.client_payload.mention }}
+#          if_mention: success
+#          text: |
+#            Start manually deploy to test.
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: always()
   # This workflow contains a single job called "build"
-  build:
-    needs: notify_start
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.client_payload.ref }}
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-  notify_end:
-    needs: build
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-      - name: Notify slack of deployment result
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,commit,ref,workflow,message
-          author_name: ${{ github.actor }}
-          mention: ${{ github.event.client_payload.mention }}
-          if_mention: success
-          text: |
-            Deployment has ${{ job.status }} to test.
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#  build:
+#    needs: notify_start
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#
+#    # Steps represent a sequence of tasks that will be executed as part of the job
+#    steps:
+#      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#      - uses: actions/checkout@v2
+#        with:
+#          ref: ${{ github.event.client_payload.ref }}
+#
+#      # Runs a single command using the runners shell
+#      - name: Run a one-line script
+#        run: echo Hello, world!!
+#
+#      # Runs a set of commands using the runners shell
+#      - name: Run a multi-line script
+#        run: |
+#          echo Add other actions to build,
+#          echo test, and deploy your project.
+#          echo ${{ github.event }}
+#      - name: Create comment
+#        uses: peter-evans/create-or-update-comment@v2
+#        with:
+#          issue-number: ${{ github.event.pull_request.number }}
+#          body: |
+#            This is a multi-line test comment
+#            - With GitHub **Markdown** :sparkles:
+#            - Created by [create-or-update-comment][1]
+#
+#            [1]: https://github.com/peter-evans/create-or-update-comment
+#          reactions: '+1'
+#  notify_end:
+#    needs: build
+#    runs-on: ubuntu-latest
+#    if: always()
+#    steps:
+#      - name: Notify slack of deployment result
+#        uses: 8398a7/action-slack@v3
+#        with:
+#          status: ${{ job.status }}
+#          fields: repo,commit,ref,workflow,message
+#          author_name: ${{ github.actor }}
+##          mention: ${{ github.event.client_payload.mention }}
+#          if_mention: success
+#          text: |
+#            Deployment has ${{ job.status }} to test.
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
