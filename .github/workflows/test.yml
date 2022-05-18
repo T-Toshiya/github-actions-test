@@ -33,10 +33,17 @@ jobs:
             build-docs
       - name: dump context
         run: echo '${{ toJSON(github) }}'
-      - name: merge PR
-        env:
-          GH_TOKEN: ${{ secrets.PAT }}
-        run: gh pr merge ${{ github.issue.number }} --merge
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: 16
+          body: |
+            @'${{ github.actor }}'
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+            
+            [1]: https://github.com/peter-evans/create-or-update-comment
 
 #  notify_start:
 #    runs-on: ubuntu-latest
