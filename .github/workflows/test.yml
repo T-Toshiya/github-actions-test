@@ -38,7 +38,7 @@ jobs:
         with:
           issue-number: 16
           body: |
-            @'${{ github.actor }}'
+            @${{ github.actor }}
             This is a multi-line test comment
             - With GitHub **Markdown** :sparkles:
             - Created by [create-or-update-comment][1]
