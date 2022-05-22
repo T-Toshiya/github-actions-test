@@ -20,6 +20,10 @@ jobs:
             branch-deploy
       - name: dump context
         run: echo '${{ toJSON(github) }}'
+      - name: Dump the client payload context
+        env:
+          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
+        run: echo "$PAYLOAD_CONTEXT"
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
@@ -27,3 +31,17 @@ jobs:
           body: |
             @${{ github.actor }}
             Start manually deploy to branch-deploy.
+      - name: Create URL to the run output
+        id: vars
+        run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          body: |
+            @${{ github.actor }}
+            [Command run output][1]
+
+            [1]: ${{ steps.vars.outputs.run-url }}

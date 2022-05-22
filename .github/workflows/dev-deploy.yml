@@ -5,6 +5,9 @@ name: branch-deploy
 on:
   issue_comment:
     types: [ created ]
+  push:
+    branches:
+      - main
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -20,6 +23,12 @@ jobs:
             dev-deploy
       - name: dump context
         run: echo '${{ toJSON(github) }}'
+      - name: Output command and arguments
+        run: |
+          echo ${{ github.event.client_payload.slash_command.command }}
+          echo ${{ github.event.client_payload.slash_command.args.all }}
+          echo ${{ github.event.client_payload.slash_command.args.unnamed.all }}
+          echo ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
@@ -27,3 +36,17 @@ jobs:
           body: |
             @${{ github.actor }}
             Start manually deploy to dev-deploy.
+      - name: Create URL to the run output
+        id: vars
+        run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          body: |
+            @${{ github.actor }}
+            [Command run output][1]
+
+            [1]: ${{ steps.vars.outputs.run-url }}
