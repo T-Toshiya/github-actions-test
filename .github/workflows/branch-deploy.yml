@@ -33,6 +33,8 @@ jobs:
         run: echo "$PAYLOAD_CONTEXT"
       - name: Check issue list
         id: check_issue
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
         run: gh issue list -l deploy
       - name: Dump result
         run: echo '${{ steps.check_issue.outcome }}'
