@@ -37,9 +37,13 @@ jobs:
         id: check_issue
         env:
           GH_TOKEN: ${{ secrets.PAT }}
-        run: gh issue list -l deploy
+        run: |
+          issues=$(gh issue list -l deploy)
+          echo ::set-output name=ISSUES::$issues
       - name: Dump result
-        run: echo '${{ toJSON(steps.check_issue) }}'
+        run: |
+          echo '${{ toJSON(steps.check_issue) }}'
+          echo '${{ steps.check_issue.outputs.ISSUES }}'
       - name: Create URL to the run output
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
