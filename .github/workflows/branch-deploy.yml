@@ -31,6 +31,11 @@ jobs:
         env:
           PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
         run: echo "$PAYLOAD_CONTEXT"
+      - name: Check issue list
+        id: check_issue
+        run: gh issue list -l deploy
+      - name: Dump result
+        run: echo '${{ steps.check_issue.outcome }}'
       - name: Create URL to the run output
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
