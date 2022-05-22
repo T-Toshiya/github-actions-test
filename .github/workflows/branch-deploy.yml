@@ -31,6 +31,8 @@ jobs:
         env:
           PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
         run: echo "$PAYLOAD_CONTEXT"
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Check issue list
         id: check_issue
         env:
