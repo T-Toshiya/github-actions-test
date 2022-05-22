@@ -9,7 +9,27 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  check:
+    outputs:
+      status: ${{ steps.check_issue.outputs.ISSUES }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check issue list
+        id: check_issue
+        env:
+          GH_TOKEN: ${{ secrets.PAT }}
+        run: |
+          issues=$(gh issue list -l deploy)
+          echo ::set-output name=ISSUES::$issues
+      - name: Dump result
+        run: |
+          echo '${{ toJSON(steps.check_issue) }}'
+          echo '${{ steps.check_issue.outputs.ISSUES }}'
   deploy:
+    needs: check
+    if: needs.check.outputs.status != ''
     runs-on: ubuntu-latest
     steps:
 #      - name: Slash Command Dispatch
@@ -31,19 +51,6 @@ jobs:
         env:
           PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
         run: echo "$PAYLOAD_CONTEXT"
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Check issue list
-        id: check_issue
-        env:
-          GH_TOKEN: ${{ secrets.PAT }}
-        run: |
-          issues=$(gh issue list -l deploy)
-          echo ::set-output name=ISSUES::$issues
-      - name: Dump result
-        run: |
-          echo '${{ toJSON(steps.check_issue) }}'
-          echo '${{ steps.check_issue.outputs.ISSUES }}'
       - name: Create URL to the run output
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
