@@ -12,18 +12,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Slash Command Dispatch
-        uses: peter-evans/slash-command-dispatch@v3
-        with:
-          token: ${{ secrets.PAT }}
-          reactions: false
-          commands: branch-deploy
-      - name: Dump context
-        run: echo '${{ toJSON(github) }}'
-      - name: Dump the client payload context
-        env:
-          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
-        run: echo "$PAYLOAD_CONTEXT"
+#      - name: Slash Command Dispatch
+#        uses: peter-evans/slash-command-dispatch@v3
+#        with:
+#          token: ${{ secrets.PAT }}
+#          reactions: false
+#          commands: branch-deploy
       - name: Create start comment
         uses: peter-evans/create-or-update-comment@v2
         with:
@@ -31,6 +25,12 @@ jobs:
           body: |
             @${{ github.actor }}
             Start branch-deploy.
+      - name: Dump context
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump the client payload context
+        env:
+          PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
+        run: echo "$PAYLOAD_CONTEXT"
       - name: Create URL to the run output
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
