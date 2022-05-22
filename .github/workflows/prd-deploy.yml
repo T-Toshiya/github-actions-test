@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+name: prd-deploy
+
+# Controls when the workflow will run
+on:
+  push:
+    tags:
+      - '*'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+#      - name: Slash Command Dispatch
+#        uses: peter-evans/slash-command-dispatch@v3
+#        with:
+#          token: ${{ secrets.PAT }}
+#          reactions: false
+#          commands: |
+#            dev-deploy
+      - name: Create start comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: 16
+          body: |
+            @${{ github.actor }}
+            Start prd-deploy.
+      - name: dump context
+        run: echo '${{ toJSON(github) }}'
+#      - name: Output command and arguments
+#        run: |
+#          echo ${{ github.event.client_payload.slash_command.command }}
+#          echo ${{ github.event.client_payload.slash_command.args.all }}
+#          echo ${{ github.event.client_payload.slash_command.args.unnamed.all }}
+#          echo ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}
+      - name: Create URL to the run output
+        id: vars
+        run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+      - name: Create end comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          issue-number: 16
+          body: |
+            @${{ github.actor }}
+            [Command run output][1]
+
+            [1]: ${{ steps.vars.outputs.run-url }}
