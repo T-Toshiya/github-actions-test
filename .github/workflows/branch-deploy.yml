@@ -39,7 +39,7 @@ jobs:
           GH_TOKEN: ${{ secrets.PAT }}
         run: gh issue list -l deploy
       - name: Dump result
-        run: echo '${{ steps.check_issue.outcome }}'
+        run: echo '${{ steps.check_issue }}'
       - name: Create URL to the run output
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
