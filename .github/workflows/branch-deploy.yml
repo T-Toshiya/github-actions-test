@@ -4,38 +4,37 @@ name: branch-deploy
 # Controls when the workflow will run
 on:
   workflow_dispatch:
-#  issue_comment:
-#    types: [ created ]
+  issue_comment:
+    types: [ created ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-#      - name: Slash Command Dispatch
-#        uses: peter-evans/slash-command-dispatch@v3
-#        with:
-#          token: ${{ secrets.PAT }}
-#          reactions: false
-#          commands: |
-#            branch-deploy
-      - name: dump context
+      - name: Slash Command Dispatch
+        uses: peter-evans/slash-command-dispatch@v3
+        with:
+          token: ${{ secrets.PAT }}
+          reactions: false
+          commands: branch-deploy
+      - name: Dump context
         run: echo '${{ toJSON(github) }}'
       - name: Dump the client payload context
         env:
           PAYLOAD_CONTEXT: ${{ toJson(github.event.client_payload) }}
         run: echo "$PAYLOAD_CONTEXT"
-      - name: Create comment
+      - name: Create start comment
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: 16
           body: |
             @${{ github.actor }}
-            Start manually deploy to branch-deploy.
+            Start branch-deploy.
       - name: Create URL to the run output
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-      - name: Create comment
+      - name: Create end comment
         uses: peter-evans/create-or-update-comment@v2
         with:
           token: ${{ secrets.PAT }}

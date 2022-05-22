@@ -3,11 +3,12 @@ name: dev-deploy
 
 # Controls when the workflow will run
 on:
+  workflow_dispatch:
 #  issue_comment:
 #    types: [ created ]
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#      - main
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -29,17 +30,17 @@ jobs:
 #          echo ${{ github.event.client_payload.slash_command.args.all }}
 #          echo ${{ github.event.client_payload.slash_command.args.unnamed.all }}
 #          echo ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}
-      - name: Create comment
+      - name: Create start comment
         uses: peter-evans/create-or-update-comment@v2
         with:
           issue-number: 16
           body: |
             @${{ github.actor }}
-            Start manually deploy to dev-deploy.
+            Start dev-deploy.
       - name: Create URL to the run output
         id: vars
         run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-      - name: Create comment
+      - name: Create end comment
         uses: peter-evans/create-or-update-comment@v2
         with:
           token: ${{ secrets.PAT }}
