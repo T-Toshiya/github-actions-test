@@ -3,20 +3,20 @@ name: test
 
 # Controls when the workflow will run
 on:
-  repository_dispatch:
-    types: [hoge]
+#  repository_dispatch:
+#    types: [hoge]
 
 # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  push:
-    branches:
-      - main
-
-#  pull_request:
-
-  issue_comment:
-    types: [ created ]
+#  push:
+#    branches:
+#      - main
+#
+##  pull_request:
+#
+#  issue_comment:
+#    types: [ created ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
