@@ -39,7 +39,7 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
-          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          issue-number: 16
           body: |
             @${{ github.actor }}
             [Command run output][1]

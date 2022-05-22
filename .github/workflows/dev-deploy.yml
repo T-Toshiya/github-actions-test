@@ -3,8 +3,8 @@ name: dev-deploy
 
 # Controls when the workflow will run
 on:
-  issue_comment:
-    types: [ created ]
+#  issue_comment:
+#    types: [ created ]
   push:
     branches:
       - main
@@ -14,21 +14,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Slash Command Dispatch
-        uses: peter-evans/slash-command-dispatch@v3
-        with:
-          token: ${{ secrets.PAT }}
-          reactions: false
-          commands: |
-            dev-deploy
+#      - name: Slash Command Dispatch
+#        uses: peter-evans/slash-command-dispatch@v3
+#        with:
+#          token: ${{ secrets.PAT }}
+#          reactions: false
+#          commands: |
+#            dev-deploy
       - name: dump context
         run: echo '${{ toJSON(github) }}'
-      - name: Output command and arguments
-        run: |
-          echo ${{ github.event.client_payload.slash_command.command }}
-          echo ${{ github.event.client_payload.slash_command.args.all }}
-          echo ${{ github.event.client_payload.slash_command.args.unnamed.all }}
-          echo ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}
+#      - name: Output command and arguments
+#        run: |
+#          echo ${{ github.event.client_payload.slash_command.command }}
+#          echo ${{ github.event.client_payload.slash_command.args.all }}
+#          echo ${{ github.event.client_payload.slash_command.args.unnamed.all }}
+#          echo ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v2
         with:
@@ -44,7 +44,7 @@ jobs:
         with:
           token: ${{ secrets.PAT }}
           repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
-          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          issue-number: 16
           body: |
             @${{ github.actor }}
             [Command run output][1]
