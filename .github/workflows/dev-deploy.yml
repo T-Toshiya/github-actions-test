@@ -17,7 +17,7 @@ jobs:
           token: ${{ secrets.PAT }}
           reactions: false
           commands: |
-            branch-deploy
+            dev-deploy
       - name: dump context
         run: echo '${{ toJSON(github) }}'
       - name: Create comment
@@ -26,4 +26,4 @@ jobs:
           issue-number: 16
           body: |
             @${{ github.actor }}
-            Start manually deploy to branch-deploy.
+            Start manually deploy to dev-deploy.
