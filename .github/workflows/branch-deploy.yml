@@ -41,6 +41,7 @@ jobs:
       - name: Create start comment
         uses: peter-evans/create-or-update-comment@v2
         with:
+          token: ${{ secrets.PAT }}
           issue-number: 1
           repository: T-Toshiya/deploy-management-test
           body: |
