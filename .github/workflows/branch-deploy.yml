@@ -29,7 +29,7 @@ jobs:
           echo '${{ steps.check_issue.outputs.ISSUES }}'
   deploy:
     needs: check
-    if: needs.check.outputs.status != ''
+    if: needs.check.outputs.status == ''
     runs-on: ubuntu-latest
     steps:
 #      - name: Slash Command Dispatch
