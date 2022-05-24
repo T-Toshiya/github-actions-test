@@ -41,8 +41,8 @@ jobs:
       - name: Create start comment
         uses: peter-evans/create-or-update-comment@v2
         with:
-          issue-number: 16
-          repository: "T-Toshiya/deploy-management-test"
+          issue-number: 1
+          repository: T-Toshiya/deploy-management-test
           body: |
             @${{ github.actor }}
             Start branch-deploy.
