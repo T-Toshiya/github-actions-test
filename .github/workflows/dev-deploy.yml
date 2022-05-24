@@ -45,6 +45,7 @@ jobs:
           issue-number: 16
           body: |
             @${{ github.actor }}
+            ${{ github.event.client_payload.github.payload.repository.full_name }}
             [Command run output][1]
 
             [1]: ${{ steps.vars.outputs.run-url }}
