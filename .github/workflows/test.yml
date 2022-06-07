@@ -20,47 +20,47 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Slash Command Dispatch
-        uses: peter-evans/slash-command-dispatch@v3
-        with:
-          token: ${{ secrets.PAT }}
-          commands: |
-            deploy
-            integration-test
-            build-docs
-      - name: dump context
-        run: echo '${{ toJSON(github) }}'
-      - name: Create comment
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          issue-number: 16
-          body: |
-            @${{ github.actor }}
-            This is a multi-line test comment
-            - With GitHub **Markdown** :sparkles:
-            - Created by [create-or-update-comment][1]
-            
-            [1]: https://github.com/peter-evans/create-or-update-comment
-
-#  notify_start:
+#  deploy:
 #    runs-on: ubuntu-latest
 #    steps:
-#      - name: Notify slack of start manually deployment
-#        uses: 8398a7/action-slack@v3
+#      - name: Slash Command Dispatch
+#        uses: peter-evans/slash-command-dispatch@v3
 #        with:
-#          status: ${{ job.status }}
-#          fields: repo,commit,ref,workflow,message
-#          author_name: ${{ github.actor }}
-##          mention: ${{ github.event.client_payload.mention }}
-#          if_mention: success
-#          text: |
-#            Start manually deploy to test.
-#        env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#        if: always()
+#          token: ${{ secrets.PAT }}
+#          commands: |
+#            deploy
+#            integration-test
+#            build-docs
+#      - name: dump context
+#        run: echo '${{ toJSON(github) }}'
+#      - name: Create comment
+#        uses: peter-evans/create-or-update-comment@v2
+#        with:
+#          issue-number: 16
+#          body: |
+#            @${{ github.actor }}
+#            This is a multi-line test comment
+#            - With GitHub **Markdown** :sparkles:
+#            - Created by [create-or-update-comment][1]
+#
+#            [1]: https://github.com/peter-evans/create-or-update-comment
+
+  notify_start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify slack of start manually deployment
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          fields: repo,commit,ref,workflow,message
+          author_name: ${{ github.actor }}
+#          mention: ${{ github.event.client_payload.mention }}
+          if_mention: success
+          text: |
+            Start manually deploy to test.
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
   # This workflow contains a single job called "build"
 #  build:
 #    needs: notify_start
