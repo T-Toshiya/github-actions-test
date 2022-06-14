@@ -48,6 +48,8 @@ jobs:
   notify_start:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 #      - name: Notify slack of start manually deployment
 #        uses: 8398a7/action-slack@v3
 #        with:
