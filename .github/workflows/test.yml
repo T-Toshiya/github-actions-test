@@ -48,19 +48,19 @@ jobs:
   notify_start:
     runs-on: ubuntu-latest
     steps:
-      - name: Notify slack of start manually deployment
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,commit,ref,workflow,message
-          author_name: ${{ github.actor }}
-#          mention: ${{ github.event.client_payload.mention }}
-          if_mention: success
-          text: |
-            Start manually deploy to test.
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always()
+#      - name: Notify slack of start manually deployment
+#        uses: 8398a7/action-slack@v3
+#        with:
+#          status: ${{ job.status }}
+#          fields: repo,commit,ref,workflow,message
+#          author_name: ${{ github.actor }}
+##          mention: ${{ github.event.client_payload.mention }}
+#          if_mention: success
+#          text: |
+#            Start manually deploy to test.
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: always()
       - name: Send GitHub trigger payload to Slack Workflow Builder
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
