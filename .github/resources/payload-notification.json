@@ -23,7 +23,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*ref:*\n {{ github.event.head_commit.url }}"
+              "text": "*ref:*\n {{ github.ref }}"
             },
             {
               "type": "mrkdwn",
@@ -36,11 +36,11 @@
           "elements": [
             {
               "type": "mrkdwn",
-              "text": "*Actor*: ${{ github.actor }}"
+              "text": "*Actor*: {{ github }}"
             },
             {
               "type": "image",
-              "image_url": "${{ github.event.sender.avatar_url }}",
+              "image_url": "{{ github.event.sender.avatar_url }}",
               "alt_text": "actor"
             }
           ]
