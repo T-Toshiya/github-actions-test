@@ -23,7 +23,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*ref:*\n {{ github.ref }}"
+              "text": "*ref:*\n {{ github.event.head_commit.url }}"
             },
             {
               "type": "mrkdwn",
