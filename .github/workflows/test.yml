@@ -31,9 +31,9 @@ jobs:
                     "color": "#f2c744",
                     "blocks": [
                       {
-                        "type": "section",
+                        "type": "header",
                         "text": {
-                          "type": "mrkdwn",
+                          "type": "plain_text",
                           "text": "Start manually deploy to test."
                         }
                       },
