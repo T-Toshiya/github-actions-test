@@ -7,7 +7,7 @@
           "type": "header",
           "text": {
             "type": "plain_text",
-            "text": "Start manually deploy to test."
+            "text": "End manually deploy to test."
           }
         },
         {
