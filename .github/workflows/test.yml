@@ -23,7 +23,7 @@ jobs:
         - name: Post message to Slack with Payload path
           uses: slackapi/slack-github-action@v1.19.0
           with:
-            payload-file-path: ./.github/resources/payload-notification.json
+#            payload-file-path: ./.github/resources/payload-notification.json
 #            payload: |
 #              {
 #                "attachments": [
