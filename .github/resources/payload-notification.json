@@ -27,7 +27,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*workflow:*\n<{{ github.payload }}/actions/runs/${{ github.runId }}|{{ github.workflow }}>"
+              "text": "*workflow:*\n<{{ github.payload.repository.html_url }}/actions/runs/${{ github.runId }}|{{ github.workflow }}>"
             }
           ]
         },
