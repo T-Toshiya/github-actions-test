@@ -57,6 +57,9 @@ jobs:
                             "text": "*workflow:*\n<${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}|${{ github.workflow }}>"
                           }
                         ]
+                      },
+                      {
+                        "type": "divider"
                       }
                     ]
                   }
