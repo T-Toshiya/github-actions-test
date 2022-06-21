@@ -11,12 +11,16 @@
           }
         },
         {
-          "type": "section",
-          "text": {
-            "type": "plain_text",
-            "text": "Content of the event name: {{ github.event_name }}",
-            "emoji": true
-          }
+          "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+          "blocks": [
+            {
+              "type": "section",
+              "text": {
+                "type": "mrkdwn",
+                "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+              }
+            }
+          ]
         },
         {
           "type": "section",
