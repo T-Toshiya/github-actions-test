@@ -1,61 +1,39 @@
 {
-  "blocks": [
+  "attachments": [
     {
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": "Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\n\n *Please select a restaurant:*"
-      }
-    },
-    {
-      "type": "divider"
-    },
-    {
-      "type": "section",
-      "text": {
-        "type": "mrkdwn",
-        "text": "*Farmhouse Thai Cuisine*\n:star::star::star::star: 1528 reviews\n They do have some vegan options, like the roti and curry, plus they have a ton of salad stuff and noodles can be ordered without meat!! They have something for everyone here"
-      },
-      "accessory": {
-        "type": "image",
-        "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/c7ed05m9lC2EmA3Aruue7A/o.jpg",
-        "alt_text": "alt text for image"
-      }
-    },
-    {
-      "type": "divider"
-    },
-    {
-      "type": "actions",
-      "elements": [
+      "color": "#f2c744",
+      "blocks": [
         {
-          "type": "button",
+          "type": "section",
           "text": {
-            "type": "plain_text",
-            "text": "Farmhouse",
-            "emoji": true
-          },
-          "value": "click_me_123"
+            "type": "mrkdwn",
+            "text": "Start manually deploy to test."
+          }
         },
         {
-          "type": "button",
-          "text": {
-            "type": "plain_text",
-            "text": "Kin Khao",
-            "emoji": true
-          },
-          "value": "click_me_123",
-          "url": "https://google.com"
-        },
-        {
-          "type": "button",
-          "text": {
-            "type": "plain_text",
-            "text": "Ler Ros",
-            "emoji": true
-          },
-          "value": "click_me_123",
-          "url": "https://google.com"
+          "type": "section",
+          "fields": [
+            {
+              "type": "mrkdwn",
+              "text": "*repo:*\n<${{ github.repositoryUrl }}|${{ github.repository }}>"
+            },
+            {
+              "type": "mrkdwn",
+              "text": "*message:*\n<https://google.com|T-Toshiya/github-actions-test>"
+            },
+            {
+              "type": "mrkdwn",
+              "text": "*commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head.title }}>"
+            },
+            {
+              "type": "mrkdwn",
+              "text": "*ref:*\n${{ github.event.head.ref }}"
+            },
+            {
+              "type": "mrkdwn",
+              "text": "*workflow:*\n<https://google.com|T-Toshiya/github-actions-test>"
+            }
+          ]
         }
       ]
     }
