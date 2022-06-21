@@ -15,7 +15,7 @@
           "fields": [
             {
               "type": "mrkdwn",
-              "text": "*repo:*\n<${{ github.repositoryUrl }}|${{ github.repository }}>"
+              "text": "*repo:*\n<{{ github.repositoryUrl }}|{{ github.repository }}>"
             },
             {
               "type": "mrkdwn",
@@ -23,11 +23,11 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head.title }}>"
+              "text": "*commit:*\n<{{ github.event.head_commit.url }}|{{ github.event.head.title }}>"
             },
             {
               "type": "mrkdwn",
-              "text": "*ref:*\n${{ github.event.head.ref }}"
+              "text": "*ref:*\n{{ github.event.head.ref }}"
             },
             {
               "type": "mrkdwn",
