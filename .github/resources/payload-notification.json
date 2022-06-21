@@ -12,6 +12,14 @@
         },
         {
           "type": "section",
+          "text": {
+            "type": "plain_text",
+            "text": "Content of the event name: {{ github.event_name }}",
+            "emoji": true
+          }
+        },
+        {
+          "type": "section",
           "fields": [
             {
               "type": "mrkdwn",

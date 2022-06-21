@@ -3,15 +3,15 @@ name: test
 
 # Controls when the workflow will run
 on:
-#  repository_dispatch:
-#    types: [hoge]
+  #  repository_dispatch:
+  #    types: [hoge]
 
-# Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
   push:
     branches:
-      - '*'
+      - "*"
 #
 ##  pull_request:
 #
@@ -20,50 +20,50 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-#  deploy:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Slash Command Dispatch
-#        uses: peter-evans/slash-command-dispatch@v3
-#        with:
-#          token: ${{ secrets.PAT }}
-#          commands: |
-#            deploy
-#            integration-test
-#            build-docs
-#      - name: dump context
-#        run: echo '${{ toJSON(github) }}'
-#      - name: Create comment
-#        uses: peter-evans/create-or-update-comment@v2
-#        with:
-#          issue-number: 16
-#          body: |
-#            @${{ github.actor }}
-#            This is a multi-line test comment
-#            - With GitHub **Markdown** :sparkles:
-#            - Created by [create-or-update-comment][1]
-#
-#            [1]: https://github.com/peter-evans/create-or-update-comment
+  #  deploy:
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #      - name: Slash Command Dispatch
+  #        uses: peter-evans/slash-command-dispatch@v3
+  #        with:
+  #          token: ${{ secrets.PAT }}
+  #          commands: |
+  #            deploy
+  #            integration-test
+  #            build-docs
+  #      - name: dump context
+  #        run: echo '${{ toJSON(github) }}'
+  #      - name: Create comment
+  #        uses: peter-evans/create-or-update-comment@v2
+  #        with:
+  #          issue-number: 16
+  #          body: |
+  #            @${{ github.actor }}
+  #            This is a multi-line test comment
+  #            - With GitHub **Markdown** :sparkles:
+  #            - Created by [create-or-update-comment][1]
+  #
+  #            [1]: https://github.com/peter-evans/create-or-update-comment
 
   notify_start:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-#      - name: Notify slack of start manually deployment
-#        uses: 8398a7/action-slack@v3
-#        with:
-#          status: ${{ job.status }}
-#          fields: repo,commit,ref,workflow,message
-#          author_name: ${{ github.actor }}
-##          mention: ${{ github.event.client_payload.mention }}
-#          if_mention: success
-#          text: |
-#            Start manually deploy to test.
-#        env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#        if: always()
-      - run: echo "${{ toJson(github) }}"
+      #      - name: Notify slack of start manually deployment
+      #        uses: 8398a7/action-slack@v3
+      #        with:
+      #          status: ${{ job.status }}
+      #          fields: repo,commit,ref,workflow,message
+      #          author_name: ${{ github.actor }}
+      ##          mention: ${{ github.event.client_payload.mention }}
+      #          if_mention: success
+      #          text: |
+      #            Start manually deploy to test.
+      #        env:
+      #          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #        if: always()
+      # - run: echo "${{ toJson(github) }}"
       - name: Send GitHub trigger payload to Slack Workflow Builder
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
