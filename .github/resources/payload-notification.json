@@ -41,7 +41,7 @@
             {
               "type": "image",
               "image_url": "${{ github.event.sender.avatar_url }}",
-              "alt_text": "cute cat"
+              "alt_text": "actor"
             }
           ]
         },
