@@ -15,7 +15,7 @@
           "fields": [
             {
               "type": "mrkdwn",
-              "text": "*repo:*\n< {{ github.event.repository.url }}| {{ github.repository }} >"
+              "text": "*repo:*\n<{{ github.payload.repository.html_url }}|{{ github.payload.repository.name }}>"
             },
             {
               "type": "mrkdwn",
@@ -36,7 +36,7 @@
           "elements": [
             {
               "type": "mrkdwn",
-              "text": "*Actor*: {{ github.event }}"
+              "text": "*Actor*: {{ github.actor }}"
             },
             {
               "type": "image",
