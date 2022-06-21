@@ -11,7 +11,7 @@ jobs:
   notify_start:
     uses: ./.github/workflows/notification.yml
     with:
-      notification_text: "Start manually deploy to ${{ github.repository }}."
+      notification_text: "Start manually deploy to dev-repository."
       notification_color: "#0953FF"
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -19,7 +19,7 @@ jobs:
     needs: notify_start
     uses: ./.github/workflows/notification.yml
     with:
-      notification_text: "Deployment has succeeded to ${{ github.repository }}."
+      notification_text: "Deployment has succeeded to dev-repository."
       notification_color: "#00FF00"
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
