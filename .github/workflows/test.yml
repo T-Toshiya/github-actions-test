@@ -26,7 +26,7 @@ jobs:
           with:
             payload-file-path: ./.github/resources/payload-notification.json
           env:
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
             SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 #    runs-on: ubuntu-latest
 #    steps:
