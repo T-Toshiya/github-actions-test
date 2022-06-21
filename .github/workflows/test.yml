@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   notify_start:
-    uses: ./.github/workflows/start-notification.yml
+    uses: ./.github/workflows/notification.yml
     with:
       notification_text: "Start manually deploy to ${{ github.repository }}."
       notification_color: "#0953FF"
@@ -24,7 +24,7 @@ jobs:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
   notify_end:
     needs: notify_start
-    uses: ./.github/workflows/start-notification.yml
+    uses: ./.github/workflows/notification.yml
     with:
       notification_text: "Deployment has succeeded to ${{ github.repository }}."
       notification_color: "#00FF00"
