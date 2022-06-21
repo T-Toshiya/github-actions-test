@@ -19,7 +19,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*commit:*\n<{{ github.payload.commit.url }}|{{ github.event.head_commit.message }}>"
+              "text": "*commit:*\n<{{ github.payload.head_commit.url }}|{{ github.payload.head_commit.message }}>"
             },
             {
               "type": "mrkdwn",
