@@ -1,5 +1,4 @@
 # This is a basic workflow to help you get started with Actions
-# 変更を加える
 name: tag-push-test
 
 # Controls when the workflow will run
