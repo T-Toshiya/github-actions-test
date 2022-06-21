@@ -25,13 +25,13 @@ jobs:
             {
               "attachments": [
                 {
-                  "color": ${{ inputs.notification_color }}, 
+                  "color": "${{ inputs.notification_color }}", 
                   "blocks": [
                     {
                       "type": "header",
                       "text": {
                         "type": "plain_text",
-                        "text": ${{ inputs.notification_text }}
+                        "text": "${{ inputs.notification_text }}"
                       }
                     },
                     {
