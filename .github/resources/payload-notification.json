@@ -27,7 +27,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*ref:*\n{{ github.event.head.ref }}"
+              "text": "*ref:*\n {{ github.event_name }}"
             },
             {
               "type": "mrkdwn",
