@@ -42,7 +42,7 @@ jobs:
                         "fields": [
                           {
                             "type": "mrkdwn",
-                            "text": "*repo:*\n<{{ github.repositoryUrl }}|{{ github.repository }}>"
+                            "text": "*repo:*\n<${{ github.repositoryUrl }}|${{ github.repository }}>"
                           },
                           {
                             "type": "mrkdwn",
@@ -50,7 +50,7 @@ jobs:
                           },
                           {
                             "type": "mrkdwn",
-                            "text": "*commit:*\n<{{ github.event.head_commit.url }}|{{ github.event.head.title }}>"
+                            "text": "*commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head.title }}>"
                           },
                           {
                             "type": "mrkdwn",
