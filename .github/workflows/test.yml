@@ -25,12 +25,7 @@ jobs:
   notify_end:
     uses: ./.github/workflows/start-notification.yml
     with:
-      notification_text: |
-        Deployment has ${{
-          (job.status == 'success' && 'succeeded') ||
-          (job.status == 'failure' && 'failed') ||
-          'cancelled'
-        }} to ${{ github.repository }}.
+      notification_text: "Deployment has succeeded to ${{ github.repository }}."
       notification_color: "#00FF00"
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
