@@ -6,6 +6,9 @@ on:
       repository:
         required: true
         type: string
+    secrets:
+      slack_webhook_url:
+        required: true
 
 jobs:
   notify_start:
@@ -72,5 +75,5 @@ jobs:
               ]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.slack_webhook_url }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK

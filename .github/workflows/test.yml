@@ -19,6 +19,8 @@ jobs:
     uses: ./.github/workflows/start-notification.yml
     with:
       repository: ${{ github.repository }}
+    secrets:
+      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
   notify_start:
     runs-on: ubuntu-latest
     steps:
