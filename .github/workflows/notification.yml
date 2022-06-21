@@ -1,12 +1,12 @@
-name: Slack通知処理
+name: notification to slack
 
 on:
   workflow_call:
     inputs:
-      notification_text:
+      text:
         required: true
         type: string
-      notification_color:
+      color:
         required: true
         type: string
     secrets:
@@ -17,7 +17,7 @@ jobs:
   notify_start:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: Post message to Slack with Payload path
         uses: slackapi/slack-github-action@v1.19.0
         with:
@@ -25,13 +25,13 @@ jobs:
             {
               "attachments": [
                 {
-                  "color": "${{ inputs.notification_color }}", 
+                  "color": "${{ inputs.color }}", 
                   "blocks": [
                     {
                       "type": "header",
                       "text": {
                         "type": "plain_text",
-                        "text": "${{ inputs.notification_text }}"
+                        "text": "${{ inputs.text }}"
                       }
                     },
                     {
