@@ -50,7 +50,7 @@ jobs:
                           },
                           {
                             "type": "mrkdwn",
-                            "text": "*ref2:*\n ${{ github.ref }}"
+                            "text": "*ref:*\n ${{ github.ref }}"
                           },
                           {
                             "type": "mrkdwn",
