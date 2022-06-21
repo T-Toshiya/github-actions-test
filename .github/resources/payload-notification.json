@@ -15,11 +15,11 @@
           "fields": [
             {
               "type": "mrkdwn",
-              "text": "*repo:*\n<${{ github.event.repository.url }}|${{ github.repository }}>"
+              "text": "*repo:*\n< ${{ github.event.repository.url }}| ${{ github.repository }}>"
             },
             {
               "type": "mrkdwn",
-              "text": "*commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>"
+              "text": "*commit:*\n< ${{ github.event.head_commit.url }}| ${{ github.event.head_commit.message }}>"
             },
             {
               "type": "mrkdwn",
@@ -27,7 +27,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*workflow:*\n<${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}|${{ github.workflow }}>"
+              "text": "*workflow:*\n< ${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}| ${{ github.workflow }}>"
             }
           ]
         },
