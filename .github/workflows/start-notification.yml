@@ -3,7 +3,10 @@ name: デプロイ開始の通知
 on:
   workflow_call:
     inputs:
-      repository:
+      notification_text:
+        required: true
+        type: string
+      notification_color:
         required: true
         type: string
     secrets:
@@ -18,18 +21,17 @@ jobs:
       - name: Post message to Slack with Payload path
         uses: slackapi/slack-github-action@v1.19.0
         with:
-          payload-file-path: ./.github/resources/payload-notification.json
           payload: |
             {
               "attachments": [
                 {
-                  "color": "#00FF00", 
+                  "color": ${{ inputs.notification_color }}, 
                   "blocks": [
                     {
                       "type": "header",
                       "text": {
                         "type": "plain_text",
-                        "text": "Start manually deploy to ${{ github.repository }}."
+                        "text": ${{ inputs.notification_text }}
                       }
                     },
                     {
