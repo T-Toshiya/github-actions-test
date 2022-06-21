@@ -23,6 +23,7 @@ jobs:
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
   notify_end:
+    needs: notify_start
     uses: ./.github/workflows/start-notification.yml
     with:
       notification_text: "Deployment has succeeded to ${{ github.repository }}."
