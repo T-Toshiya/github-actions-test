@@ -27,7 +27,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*workflow:*\n< ${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}| {{ github.workflow }}>"
+              "text": "*workflow:*\n< {{ github.payload.event.repository.url }}/actions/runs/${{ github.run_id }}|{{ github.workflow }}>"
             }
           ]
         },
@@ -40,7 +40,7 @@
             },
             {
               "type": "image",
-              "image_url": "{{ github.event.sender.avatar_url }}",
+              "image_url": "{{ github.payload.sender.avatar_url }}",
               "alt_text": "actor"
             }
           ]
