@@ -28,7 +28,69 @@ jobs:
               {
                 "attachments": [
                   {
-                    "color": "#f2c744",
+                    "color": "#538CC6", 
+                    "blocks": [
+                      {
+                        "type": "header",
+                        "text": {
+                          "type": "plain_text",
+                          "text": "Start manually deploy to test."
+                        }
+                      },
+                      {
+                        "type": "section",
+                        "fields": [
+                          {
+                            "type": "mrkdwn",
+                            "text": "*repo:*\n<${{ github.event.repository.url }}|${{ github.repository }}>"
+                          },
+                          {
+                            "type": "mrkdwn",
+                            "text": "*commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>"
+                          },
+                          {
+                            "type": "mrkdwn",
+                            "text": "*ref:*\n ${{ github.ref }}"
+                          },
+                          {
+                            "type": "mrkdwn",
+                            "text": "*workflow:*\n<${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}|${{ github.workflow }}>"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "context",
+                        "elements": [
+                          {
+                            "type": "mrkdwn",
+                            "text": "*Actor*: ${{ github.actor }}"
+                          },
+                          {
+                            "type": "image",
+                            "image_url": "${{ github.event.sender.avatar_url }}",
+                            "alt_text": "cute cat"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "divider"
+                      }
+                    ]
+                  }
+                ]
+              }
+          env:
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+            SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        - name: Post message to Slack with Payload path
+          uses: slackapi/slack-github-action@v1.19.0
+          with:
+            payload-file-path: ./.github/resources/payload-notification.json
+            payload: |
+              {
+                "attachments": [
+                  {
+                    "color": "#00FF00", 
                     "blocks": [
                       {
                         "type": "header",

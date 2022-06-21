@@ -4,9 +4,9 @@
       "color": "#f2c744",
       "blocks": [
         {
-          "type": "section",
+          "type": "header",
           "text": {
-            "type": "mrkdwn",
+            "type": "plain_text",
             "text": "Start manually deploy to test."
           }
         },
@@ -15,25 +15,38 @@
           "fields": [
             {
               "type": "mrkdwn",
-              "text": "*repo:*\n<{{ github.repositoryUrl }}|{{ github.repository }}>"
+              "text": "*repo:*\n<${{ github.event.repository.url }}|${{ github.repository }}>"
             },
             {
               "type": "mrkdwn",
-              "text": "*message:*\n<https://google.com|T-Toshiya/github-actions-test>"
+              "text": "*commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>"
             },
             {
               "type": "mrkdwn",
-              "text": "*commit:*\n<{{ github.event.head_commit.url }}|{{ github.event.head.title }}>"
+              "text": "*ref:*\n ${{ github.ref }}"
             },
             {
               "type": "mrkdwn",
-              "text": "*ref2:*\n ${{ github.event_name }}"
-            },
-            {
-              "type": "mrkdwn",
-              "text": "*workflow:*\n<https://google.com|T-Toshiya/github-actions-test>"
+              "text": "*workflow:*\n<${{ github.event.repository.url }}/actions/runs/${{ github.run_id }}|${{ github.workflow }}>"
             }
           ]
+        },
+        {
+          "type": "context",
+          "elements": [
+            {
+              "type": "mrkdwn",
+              "text": "*Actor*: ${{ github.actor }}"
+            },
+            {
+              "type": "image",
+              "image_url": "${{ github.event.sender.avatar_url }}",
+              "alt_text": "cute cat"
+            }
+          ]
+        },
+        {
+          "type": "divider"
         }
       ]
     }
