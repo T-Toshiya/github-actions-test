@@ -1,4 +1,4 @@
-name: デプロイ開始の通知
+name: Slack通知処理
 
 on:
   workflow_call:
