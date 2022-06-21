@@ -42,23 +42,19 @@ jobs:
                         "fields": [
                           {
                             "type": "mrkdwn",
-                            "text": "*repo:*\n<${{ github.repositoryUrl }}|${{ github.repository }}>"
+                            "text": "*repo:*\n<${{ github.repository.url }}|${{ github.repository }}>"
                           },
                           {
                             "type": "mrkdwn",
-                            "text": "*message:*\n<https://google.com|T-Toshiya/github-actions-test>"
+                            "text": "*commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head_commit.message }}>"
                           },
                           {
                             "type": "mrkdwn",
-                            "text": "*commit:*\n<${{ github.event.head_commit.url }}|${{ github.event.head.title }}>"
+                            "text": "*ref2:*\n ${{ github.ref }}"
                           },
                           {
                             "type": "mrkdwn",
-                            "text": "*ref2:*\n ${{ github.event_name }}"
-                          },
-                          {
-                            "type": "mrkdwn",
-                            "text": "*workflow:*\n<https://google.com|T-Toshiya/github-actions-test>"
+                            "text": "*workflow:*\n<${{ github.repository.url }}/actions/runs/${{ github.run_id }}|${{ github.workflow }}>"
                           }
                         ]
                       }
