@@ -19,7 +19,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*commit:*\n< {{ github.event.head_commit.url }}| {{ github.event.head_commit.message }}>"
+              "text": "*commit:*\n<{{ github.event.head_commit.url }}|{{ github.event.head_commit.message }}>"
             },
             {
               "type": "mrkdwn",
@@ -27,7 +27,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*workflow:*\n< {{ github.payload.event }}/actions/runs/${{ github.runId }}|{{ github.workflow }}>"
+              "text": "*workflow:*\n<{{ github.payload }}/actions/runs/${{ github.runId }}|{{ github.workflow }}>"
             }
           ]
         },
