@@ -22,7 +22,7 @@ jobs:
         - run: echo "${{ github.event_name }}"
         - name: Post message to Slack with Payload path
           uses: slackapi/slack-github-action@v1.19.0
-          with:
+#          with:
 #            payload-file-path: ./.github/resources/payload-notification.json
 #            payload: |
 #              {
