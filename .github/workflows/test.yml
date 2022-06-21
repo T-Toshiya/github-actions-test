@@ -63,7 +63,7 @@ jobs:
 #        env:
 #          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 #        if: always()
-      - run: echo "${{ github }}"
+      - run: echo ${{ toJson(github) }}
       - name: Send GitHub trigger payload to Slack Workflow Builder
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
