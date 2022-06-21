@@ -59,6 +59,20 @@ jobs:
                         ]
                       },
                       {
+                        "type": "context",
+                        "elements": [
+                          {
+                            "type": "mrkdwn",
+                            "text": "*Actor*: ${{ github.actor }}"
+                          },
+                          {
+                            "type": "image",
+                            "image_url": "${{ github.event.sender.avatar_url }}",
+                            "alt_text": "cute cat"
+                          }
+                        ]
+                      },
+                      {
                         "type": "divider"
                       }
                     ]
