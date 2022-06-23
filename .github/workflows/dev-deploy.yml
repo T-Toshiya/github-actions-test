@@ -17,7 +17,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if:  ${{ inputs.is_main_branch }}
+    if:  ${{ github.ref_name == 'main' }}
     steps:
       - name: dump context
         run: echo '${{ toJSON(github) }}'
