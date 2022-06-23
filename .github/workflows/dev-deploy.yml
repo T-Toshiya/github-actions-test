@@ -3,8 +3,16 @@ name: dev-deploy
 
 on:
   workflow_dispatch:
-    branches:
-      - main
+    inputs:
+      dryrun:
+        type: boolean
+        description: Is main branch?
+        required: true
+        default: false
+
+#  push:
+#    branches:
+#      - main
 
 jobs:
   deploy:
