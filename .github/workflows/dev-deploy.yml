@@ -4,7 +4,7 @@ name: dev-deploy
 on:
   workflow_dispatch:
     inputs:
-      dryrun:
+      is_main_branch:
         type: boolean
         description: Is main branch?
         required: true
@@ -17,6 +17,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if:  ${{ inputs.is_main_branch }}
     steps:
       - name: dump context
         run: echo '${{ toJSON(github) }}'
