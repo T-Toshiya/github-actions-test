@@ -15,16 +15,13 @@ on:
 #      - main
 
 jobs:
-  check_branch:
-    runs-on: ubuntu-latest
-    if: ${{ github.ref_name != 'main' }}
-    steps:
-        - run: echo 'main ブランチを選択してください'
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Fail if branch is not main
         if: ${{ github.ref_name != 'main' }}
-        run: exit 1
+        run: |
+          echo 'main ブランチを選択してください'
+          exit 1
       - name: dump context
         run: echo '${{ toJSON(github) }}'
