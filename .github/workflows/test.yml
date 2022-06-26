@@ -21,10 +21,19 @@ jobs:
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
   notify_end:
+    if: success()
     needs: notify_start
     uses: ./.github/workflows/notification.yml
     with:
       text: "Deployment has succeeded to dev-repository."
       color: "#00FF00"
+    secrets:
+      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+  notify_failed:
+    if: failure()
+    uses: ./.github/workflows/notification.yml
+    with:
+      text: "Deployment has failed to dev-repository."
+      color: "#DF0101"
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
