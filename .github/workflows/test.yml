@@ -16,7 +16,12 @@ jobs:
   notify_start:
     uses: ./.github/workflows/notification.yml
     with:
-      text: "Start manually deploy to dev-repository."
+      text: |
+        Rollback has ${{
+          (job.status == 'success' && 'succeeded') ||
+          (job.status == 'failure' && 'failed') ||
+          'cancelled'
+        }} to dev-repository.
       color: "#0953FF"
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
