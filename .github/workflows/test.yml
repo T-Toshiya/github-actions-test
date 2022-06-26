@@ -15,6 +15,14 @@ jobs:
       color: "#0953FF"
     secrets:
       slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+  rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if branch is not main
+        if: ${{ github.ref_name != 'main' }}
+        run: |
+          echo 'main ブランチを選択してください'
+          exit 1
   notify_end:
     needs: notify_start
     if: success()
