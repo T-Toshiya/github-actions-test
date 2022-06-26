@@ -19,7 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fail if branch is not main
-        if: ${{ github.ref_name != 'main' }}
         run: |
           echo 'main ブランチを選択してください'
           exit 1
