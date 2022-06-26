@@ -8,6 +8,11 @@ on:
       - "*"
 
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump context
+        run: echo '${{ job.status }}'
   notify_start:
     uses: ./.github/workflows/notification.yml
     with:
