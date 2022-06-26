@@ -9,6 +9,9 @@ on:
       color:
         required: true
         type: string
+      status:
+        required: false
+        type: string
     secrets:
       slack_webhook_url:
         required: true
