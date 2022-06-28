@@ -19,13 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-#      - name: Post message to Slack with Payload path
-#        uses: slackapi/slack-github-action@v1.19.0
+      - name: Post message to Slack with Payload path
+        uses: slackapi/slack-github-action@v1.19.0
 #        with:
 #          payload-file-path: ./.github/resources/payload-notification.json
-#        env:
-#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-#          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
       - name: Dump result
         run: |
           echo '${{ toJSON(github) }}'
