@@ -8,34 +8,37 @@ on:
 #      - "*"
 
 jobs:
-  notify_start:
-    uses: ./.github/workflows/notification.yml
-    with:
-      text: "Start manually deploy to dev-repository."
-      color: "#0953FF"
-    secrets:
-      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-  rollback:
+#  notify_start:
+#    uses: ./.github/workflows/notification.yml
+#    with:
+#      text: "Start manually deploy to dev-repository."
+#      color: "#0953FF"
+#    secrets:
+#      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Fail if branch is not main
-        run: |
-          echo 'main ブランチを選択してください'
-          exit 1
-  notify_end:
-    needs: notify_start
-    if: success()
-    uses: ./.github/workflows/notification.yml
-    with:
-      text: "Deployment has succeeded to dev-repository."
-      color: "#00FF00"
-    secrets:
-      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
-  notify_failed:
-    if: failure()
-    uses: ./.github/workflows/notification.yml
-    with:
-      text: "Deployment has failed to dev-repository."
-      color: "#DF0101"
-    secrets:
-      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - name: Post message to Slack with Payload path
+        uses: slackapi/slack-github-action@v1.19.0
+        with:
+          payload-file-path: ./.github/resources/payload-notification.json
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+#  notify_end:
+#    needs: notify_start
+#    if: success()
+#    uses: ./.github/workflows/notification.yml
+#    with:
+#      text: "Deployment has succeeded to dev-repository."
+#      color: "#00FF00"
+#    secrets:
+#      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+#  notify_failed:
+#    if: failure()
+#    uses: ./.github/workflows/notification.yml
+#    with:
+#      text: "Deployment has failed to dev-repository."
+#      color: "#DF0101"
+#    secrets:
+#      slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
