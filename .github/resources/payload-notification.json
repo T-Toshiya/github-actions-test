@@ -12,7 +12,7 @@
             },
             {
               "type": "mrkdwn",
-              "text": "*commit:*\n<{{ github.payload.head_commit.url }}|{{ github.payload.head_commit.message }}>"
+              "text": "*commit:*\n<{{ github.payload.head_commit.url }}|{{ github.sha }}>"
             },
             {
               "type": "mrkdwn",
