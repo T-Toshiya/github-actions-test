@@ -21,8 +21,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Post message to Slack with Payload path
         uses: slackapi/slack-github-action@v1.19.0
-#        with:
-#          payload-file-path: ./.github/resources/payload-notification.json
+        with:
+          payload-file-path: ./.github/resources/payload-notification.json
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
@@ -35,7 +35,7 @@ jobs:
           channel-id: 'C034MTUB9TK'
           # For posting a simple plain text message
           slack-message: "Start manually deploy to dev-repository."
-#          payload-file-path: ./.github/resources/payload-notification.json
+          payload-file-path: ./.github/resources/payload-notification.json
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
 #  notify_end:
