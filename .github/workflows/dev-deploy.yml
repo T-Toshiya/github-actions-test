@@ -4,49 +4,45 @@ name: dev-deploy
 # Controls when the workflow will run
 on:
   workflow_dispatch:
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - "*"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy:
+  rollback:
     runs-on: ubuntu-latest
     steps:
-#      - name: Slash Command Dispatch
-#        uses: peter-evans/slash-command-dispatch@v3
-#        with:
-#          token: ${{ secrets.PAT }}
-#          reactions: false
-#          commands: |
-#            dev-deploy
-      - name: Create start comment
-        uses: peter-evans/create-or-update-comment@v2
+      - name: Fail if branch is not main
+        if: ${{ github.ref_name != 'main' }}
+        run: |
+          echo 'main ブランチを選択してください'
+          exit 1
+      - name: Notify slack of start rollback
+        uses: 8398a7/action-slack@v3
         with:
-          issue-number: 16
-          body: |
-            @${{ github.actor }}
-            Start dev-deploy.
-      - name: dump context
-        run: echo '${{ toJSON(github) }}'
-#      - name: Output command and arguments
-#        run: |
-#          echo ${{ github.event.client_payload.slash_command.command }}
-#          echo ${{ github.event.client_payload.slash_command.args.all }}
-#          echo ${{ github.event.client_payload.slash_command.args.unnamed.all }}
-#          echo ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}
-      - name: Create URL to the run output
-        id: vars
-        run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-      - name: Create end comment
-        uses: peter-evans/create-or-update-comment@v2
+          status: ${{ job.status }}
+          fields: repo,commit,ref,workflow,message
+          author_name: ${{ github.actor }}
+          text: |
+            Start rollback to xxx.
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Notify slack of deployment result
+        uses: 8398a7/action-slack@v3
         with:
-          token: ${{ secrets.PAT }}
-          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
-          issue-number: 16
-          body: |
-            @${{ github.actor }}
-            ${{ github.event.client_payload.github.payload.repository.full_name }}
-            [Command run output][1]
-
-            [1]: ${{ steps.vars.outputs.run-url }}
+          status: ${{ job.status }}
+          fields: repo,commit,ref,workflow,message,took
+          author_name: ${{ github.actor }}
+          text: |
+            Rollback has ${{
+              (job.status == 'success' && 'succeeded') ||
+              (job.status == 'failure' && 'failed') ||
+              'cancelled'
+            }} to xxx.
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
