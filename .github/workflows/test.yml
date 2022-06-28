@@ -26,6 +26,9 @@ jobs:
 #        env:
 #          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 #          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+      - name: Dump result
+        run: |
+          echo '${{ toJSON(github) }}'
       - name: Post message to Slack with Payload path
         uses: slackapi/slack-github-action@v1.19.0
         with:
