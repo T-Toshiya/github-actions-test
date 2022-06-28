@@ -13,11 +13,6 @@ jobs:
   rollback:
     runs-on: ubuntu-latest
     steps:
-      - name: Fail if branch is not main
-        if: ${{ github.ref_name != 'main' }}
-        run: |
-          echo 'main ブランチを選択してください'
-          exit 1
       - name: Notify slack of start rollback
         uses: 8398a7/action-slack@v3
         with:
@@ -29,6 +24,11 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
+      - name: Fail if branch is not main
+        if: ${{ github.ref_name != 'main' }}
+        run: |
+          echo 'main ブランチを選択してください'
+          exit 1
       - name: Checkout
         uses: actions/checkout@v2
       - name: Notify slack of deployment result
