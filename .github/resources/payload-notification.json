@@ -4,13 +4,6 @@
       "color": "#0953FF",
       "blocks": [
         {
-          "type": "header",
-          "text": {
-            "type": "plain_text",
-            "text": "End manually deploy to test."
-          }
-        },
-        {
           "type": "section",
           "fields": [
             {
