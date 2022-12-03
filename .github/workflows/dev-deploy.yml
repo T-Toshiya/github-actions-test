@@ -1,27 +1,15 @@
-# This is a basic workflow to help you get started with Actions
 name: dev-deploy
 
 on:
-  workflow_dispatch:
-    inputs:
-      is_main_branch:
-        type: boolean
-        description: Is main branch?
-        required: true
-        default: false
-
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Fail if branch is not main
-        if: ${{ github.ref_name != 'main' }}
-        run: |
-          echo 'main ブランチを選択してください'
-          exit 1
-      - name: dump context
-        run: echo '${{ toJSON(github) }}'
+      - uses: actions/checkout@v3
+      - uses: Songmu/tagpr@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.USER_GITHUB_ACCESS_TOKEN }}
