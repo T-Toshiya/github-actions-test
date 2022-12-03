@@ -2,17 +2,9 @@
 name: dev-deploy
 
 on:
-  workflow_dispatch:
-    inputs:
-      is_main_branch:
-        type: boolean
-        description: Is main branch?
-        required: true
-        default: false
-
-#  push:
-#    branches:
-#      - main
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
