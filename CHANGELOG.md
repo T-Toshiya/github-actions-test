@@ -1,5 +1,8 @@
 # Changelog
 
+## [21220621.2.2](https://github.com/T-Toshiya/github-actions-test/compare/21220621.2.1...21220621.2.2) - 2022-12-17
+- readmeを追加 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/38
+
 ## [21220621.2.1](https://github.com/T-Toshiya/github-actions-test/compare/21220621.2...21220621.2.1) - 2022-12-03
 - 手動実行時のブランチを指定 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/30
 - チェック機能をつけてみる by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/31
