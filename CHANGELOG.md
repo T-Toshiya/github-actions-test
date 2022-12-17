@@ -1,5 +1,16 @@
 # Changelog
 
+## [v1.0.9](https://github.com/T-Toshiya/github-actions-test/compare/21220621.2.3...v1.0.9) - 2022-12-17
+- readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/42
+- readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/44
+- composer を追加してみる by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/46
+- readme を修正 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/48
+- 設定ファイルを修正 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/50
+- readme を修正 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/52
+- readme を修正 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/54
+- readme を修正 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/56
+- version変更 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/58
+
 ## [v1.0.7](https://github.com/T-Toshiya/github-actions-test/compare/21220621.2.3...v1.0.7) - 2022-12-17
 - readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/42
 - readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/44
