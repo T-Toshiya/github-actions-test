@@ -5,6 +5,11 @@
 - readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/44
 - composer を追加してみる by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/46
 
+## [1.0.7](https://github.com/T-Toshiya/github-actions-test/compare/21220621.2.3...1.0.7) - 2022-12-17
+- readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/42
+- readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/44
+- composer を追加してみる by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/46
+
 ## [21220621.2.3](https://github.com/T-Toshiya/github-actions-test/compare/21220621.2.2...21220621.2.3) - 2022-12-17
 - readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/40
 
