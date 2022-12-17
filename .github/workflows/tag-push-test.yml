@@ -5,7 +5,7 @@ name: tag-push-test
 on:
   push:
     tags:
-      - '20*'
+      - 'v*'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
