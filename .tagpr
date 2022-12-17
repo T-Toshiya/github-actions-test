@@ -32,4 +32,4 @@
 [tagpr]
 	vPrefix = false
 	releaseBranch = main
-	versionFile = -
+	versionFile = composer.json
