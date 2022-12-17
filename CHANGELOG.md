@@ -1,5 +1,8 @@
 # Changelog
 
+## [21220621.2.4](https://github.com/T-Toshiya/github-actions-test/compare/21220621.2.3...21220621.2.4) - 2022-12-17
+- readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/42
+
 ## [21220621.2.3](https://github.com/T-Toshiya/github-actions-test/compare/21220621.2.2...21220621.2.3) - 2022-12-17
 - readmeを追記 by @T-Toshiya in https://github.com/T-Toshiya/github-actions-test/pull/40
 
